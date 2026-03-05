@@ -856,18 +856,17 @@ const MoodboardSection: React.FC<{
       <div className="card">
         <div className="card-header">
           <div className="card-title-main">{moodboard.title}</div>
-          <span className="pill-soft">
-            {moodboard.images.length} references
-          </span>
+          <span className="pill-soft">{moodboard.images.length} references</span>
         </div>
         <div style={{ fontSize: 12, marginBottom: 8 }}>
           {moodboard.paletteLabel}
         </div>
         <div className="moodboard-grid">
           {moodboard.images.length === 0 ? (
-              <div className="empty-state">
-                Drop a few frames from your favorite films or own shoots and build
-                out the look.
+            <div className="empty-state">
+              Drop a few frames from your favorite films or own shoots and build
+              out the look.
+            </div>
           ) : (
             moodboard.images.map((img) => (
               <div key={img.id} className="mood-item">
@@ -878,91 +877,6 @@ const MoodboardSection: React.FC<{
               </div>
             ))
           )}
-        </div>
-      </div>
-    </div>
-  );
-};
-
-const ContactsSection: React.FC<{
-  contacts: Contact[];
-  onChange: (cs: Contact[]) => void;
-}> = ({ contacts, onChange }) => {
-  const [name, setName] = useState("");
-  const [role, setRole] = useState("");
-  const [email, setEmail] = useState("");
-
-  const addContact = () => {
-    if (!name.trim()) return;
-    const next: Contact = {
-      id: `c-${Date.now()}`,
-      name: name.trim(),
-      role: role.trim() || "Collaborator",
-      email: email.trim(),
-      notes: "",
-    };
-    onChange([...contacts, next]);
-    setName("");
-    setRole("");
-    setEmail("");
-  };
-
-  return (
-    <div className="content-scroll section-layout">
-      <div className="section-header-row">
-        <div>
-          <div className="section-title-main">Contacts</div>
-          <div className="section-subtitle">
-            Keep everyone attached to your projects here – cast, crew, producers.
-          </div>
-        </div>
-      </div>
-
-      <div className="card">
-        <div className="card-header">
-          <div className="card-title-main">People</div>
-          <span className="pill-soft">{contacts.length} contacts</span>
-        </div>
-        <table className="contacts-table">
-          <thead>
-            <tr>
-              <th>Name</th>
-              <th>Role</th>
-              <th>Email</th>
-            </tr>
-          </thead>
-          <tbody>
-            {contacts.map((c) => (
-              <tr key={c.id}>
-                <td>{c.name}</td>
-                <td>{c.role}</td>
-                <td>{c.email || "—"}</td>
-              </tr>
-            ))}
-          </tbody>
-        </table>
-        <div className="inline-form">
-          <input
-            className="input"
-            placeholder="Name"
-            value={name}
-            onChange={(e) => setName(e.target.value)}
-          />
-          <input
-            className="input"
-            placeholder="Role (DP, actor, etc.)"
-            value={role}
-            onChange={(e) => setRole(e.target.value)}
-          />
-          <input
-            className="input"
-            placeholder="Email (optional)"
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
-          />
-          <button type="button" className="small-button" onClick={addContact}>
-            Add
-          </button>
         </div>
       </div>
     </div>
